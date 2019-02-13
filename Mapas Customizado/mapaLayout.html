@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <div id="map" style="width:100%;height:600px;"></div>
+
+    <script>
+    
+        
+        
+        function myMap() {
+            var trabajoActual = new google.maps.LatLng(40.451580, -3.693521);
+            var otero = new google.maps.LatLng(40.409811, -3.738712);
+            var DGGC = new google.maps.LatLng(40.444670, -3.711870);
+            var casa = new google.maps.LatLng(40.378565, -3.776224);
+            var puntoCentral = new google.maps.LatLng(40.416948, -3.703371);
+
+            //Recogemos la etiqueta mapa y le decimos que se centre sobre la zona 0 de madrid con un zoom de 12
+            var mapCanvas = document.getElementById("map");
+            var mapOptions = {
+                center: puntoCentral,
+                zoom: 12
+            };
+
+            //Creamos el mapa pasando mapCanvas y mapOptions
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            //---------- EMPROSOFT ----------//
+            //CREAMOS EL ICONO Y LO POSICIONAMOS EN LAS COORDENADAS DE EMPROSOFTY
+            var Emprosoft = new google.maps.Marker({
+                position: trabajoActual,
+                icon: 'img/work.png'
+            });
+            Emprosoft.setMap(map);
+
+
+            //CREAMOS EL CONTENIDO DE LA INFORMACION DE EMPROSOFT
+            google.maps.event.addListener(Emprosoft, 'click', function() {
+                var infoEmprosoft = new google.maps.InfoWindow({
+                    content: '<center><h3>Trabajo Actual</h3><img src="img/emprosoft.png"><br><a href="http://www.emprosoft.com/">www.emprosoft.com</a></center>'
+                });
+                infoEmprosoft.open(map, Emprosoft);
+            });
+
+            //---------- JOSE RAMON OTERO ----------//
+            var InstitutoFormacion = new google.maps.Marker({
+                position: otero,
+                icon: 'img/otero.png'
+            });
+            InstitutoFormacion.setMap(map);
+            
+            //CREAMOS EL CONTENIDO DE LA INFORMACION DE JRO
+            google.maps.event.addListener(InstitutoFormacion, 'click', function() {
+                var infoJRO = new google.maps.InfoWindow({
+                    content: '<center><h3>FPGS</h3><img src="img/jro.png"><br><a href="http://www.jrotero.com/nuestro-centro/">www.jrotero.com</a></center>'
+                });
+                infoJRO.open(map, InstitutoFormacion);
+            });
+
+            //---------- GUARDIA CIVIL ----------//
+            var GuardiaCivil = new google.maps.Marker({
+                position: DGGC,
+                icon: 'img/guardia.png'
+            });
+            GuardiaCivil.setMap(map);
+            
+            //CREAMOS EL CONTENIDO DE LA INFORMACION DE JRO
+            google.maps.event.addListener(GuardiaCivil, 'click', function() {
+                var infoGC = new google.maps.InfoWindow({
+                    content: '<center><h3>Trabajo con Emprosoft</h3><img src="img/gc.png"><br><a href="http://www.interior.gob.es/el-ministerio/directorio/servicios-centrales/direccion-general-de-la-guardia-civil1">www.interior.gob.es</a></center>'
+                });
+                infoGC.open(map, GuardiaCivil);
+            });
+            
+            //---------- CASA ----------//
+            
+            var Hogar = new google.maps.Marker({
+                position: casa,
+                icon: 'img/casa.png'
+            });
+            Hogar.setMap(map);
+            
+            //CREAMOS EL CONTENIDO DE LA INFORMACION DE JRO
+            google.maps.event.addListener(Hogar, 'click', function() {
+                var infoHogar = new google.maps.InfoWindow({
+                    content: '<center><h3>Domicilio</h3><img src="img/hogar.png"><p>Calle Aldeanueva de la Vera</p>'
+                });
+                infoHogar.open(map, Hogar);
+            });
+            
+        }
+        
+
+    </script>
+    
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVeWQzD2KRShFMvPEqpb4ohKkGG9TbLKs &callback=myMap"></script>
+    
+</body>
+
+</html>
